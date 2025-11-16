@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jennifer (Dotimi) Nensha - potfoilo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+<style>
+        /*
+        1. Global Variables & Base Styles (Mobile-First: All fixed widths are forbidden)
+        ========================================
+        */
+        :root {            
+            /* Dark Mode Defaults */
+            --color-bg: #0D1117; /* Deep Charcoal */
+            --color-text: #E6EDF3; /* Light Gray */
+            --color-accent: #38A3A5; /* Teal/Cyan - Primary highlight */
+            --color-surface: #161B22; /* Darker Surface */
+            --color-link: #58A6FF; /* Blue Link */
+            --header-height-mobile: 48px;
+            --header-height-scrolled: 40px;
+            --water-fill-start-color: rgba(56, 163, 165, 0.8); /* Teal with opacity */
+            --water-fill-end-color: rgba(56, 163, 165, 0.5); /* Lighter Teal with opacity */
+        }
+
+        /* Light Mode Overrides */
+        .light {
+            --color-bg: #FFFFFF; /* Pure White */
+            --color-text: #101014; /* Near Black */
+            --color-accent: #38A3A5; /* Teal/Cyan (Primary Accent) */
+            --color-accent-light: #8AE5E8; /* Lighter Teal for gradients/shadows */
+            --color-surface: #F0F4F8; /* Light Gray Surface */
+            --color-link: #58A6FF; /* Blue Link/Secondary Highlight */
+            --water-fill-start-color: rgba(56, 163, 165, 0.5); /* Teal with opacity */
+            --water-fill-end-color: rgba(56, 163, 165, 0.2); /* Lighter Teal with opacity */
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.3s;
+            margin: 0.5rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-bg); 
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 5px var(--color-accent), 0 0 10px rgba(56, 163, 165, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: #55CACA;
+            transform: translateY(-2px);
+            box-shadow: 0 0 8px var(--color-accent), 0 0 20px rgba(56, 163, 165, 0.6);
+        }
+        
+        .light .btn-primary {
+            color: var(--color-surface);
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 6px rgba(56, 163, 165, 0.4); 
+        }
+
+        .light .btn-primary:hover {
+            background-color: var(--color-accent-light);
+            box-shadow: 0 6px 10px rgba(56, 163, 165, 0.5);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 3px var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(56, 163, 165, 0.1); 
+            transform: translateY(-2px);
+            box-shadow: 0 0 8px var(--color-accent);
+        }
+        
+        .light .btn-secondary {
+            box-shadow: 0 0 0 transparent;
+            color: var(--color-link);
+            border-color: var(--color-link);
+        }
+        
+        .light .btn-secondary:hover {
+            background-color: rgba(88, 166, 255, 0.1); 
+            box-shadow: 0 4px 6px rgba(88, 166, 255, 0.2);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            color: var(--color-text);
+        }
+        
+        .light h1, .light h2, .light h3 {
+            color: var(--color-link); 
+        }
+
+        a {
+            color: var(--color-link);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /*
+        2. Header & Navigation 
+        ========================================
+        */
+        header {
+            background-color: var(--color-surface);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--color-accent); 
+            box-shadow: 0 2px 10px rgba(56, 163, 165, 0.2);
+            padding: 0.5rem 0; 
+            height: var(--header-height-mobile);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        /* Shrinking Header Styles */
+        header.header-scrolled {
+            height: var(--header-height-scrolled);
+            padding: 0.25rem 0;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-shadow: 0 0 5px var(--color-accent);
+        }
+        
+        .light .logo { text-shadow: none; color: var(--color-link); }
+
+        #theme-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        #theme-toggle:hover {
+            color: var(--color-accent);
+        }
+
+        #menu-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            margin-left: 1rem; /* Space between theme and menu toggles */
+        }
+
+        @media (min-width: 768px) {
+            #menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+        }
+
+        .nav-links { display: none; } 
+        /* The previous design used CSS to hide .nav-links on mobile */
+
+        .nav-link-text { transition: opacity 0.3s ease; }
+        .nav-link-icon { display: none; transition: opacity 0.3s ease; }
+
+        .header-scrolled .nav-link-text {
+            opacity: 0;
+            display: none;
+        }
+        .header-scrolled .nav-link-icon {
+            display: inline;
+            opacity: 1;
+            font-size: 1.1rem;
+        }
+
+        /* Announcement Bar */
+        #announcement-bar {
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            padding: 0.25rem 0;
+            white-space: nowrap;
+            overflow: hidden;
+            position: sticky;
+            top: var(--header-height-mobile); /* Stick below the header */
+            z-index: 99;
+            transition: top 0.3s ease-in-out;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        #announcement-bar.header-scrolled {
+            top: var(--header-height-scrolled); /* Adjust position when header shrinks */
+        }
+
+        .announcement-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 60s linear infinite;
+        }
+
+        .announcement-content span {
+            padding-right: 5rem; /* Space between repeated text */
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /*
+        2.1 Sidebar Menu (Mobile)
+        ========================================
+        */
+        #sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        body.sidebar-open #sidebar-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -280px; /* Start off-screen */
+            width: 280px;
+            height: 100%;
+            background-color: var(--color-surface);
+            z-index: 1001;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.3s ease-in-out;
+            border-left: 2px solid var(--color-accent);
+        }
+
+        body.sidebar-open #sidebar-menu {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header .logo { font-size: 1.2rem; }
+        #sidebar-close { font-size: 1.5rem; cursor: pointer; background: none; border: none; color: var(--color-text); }
+
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-links a {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(56, 163, 165, 0.2);
+        }
+        
+        /*
+        3. Hero Section & Water Animation
+        ========================================
+        */
+        #hero {
+            position: relative;
+            /* Ensures it takes up at least the visible screen space */
+            min-height: calc(100vh - var(--header-height-mobile) - 28px); /* Adjusted for announcement bar */
+            padding-top: 3rem; 
+            padding-bottom: 3rem;
+            overflow: hidden; /* Contains the water effect */
+        }
+
+        .hero-content {
+            z-index: 2; /* Keep content above the water */
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 3px rgba(56, 163, 165, 0.5);
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            color: var(--color-link);
+        }
+        
+        /* 3.1. AVATAR STYLING (UPDATED TO SQUARE) 
+        ----------------------------------------
+        */
+        .avatar-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem; /* Center and spacing below */
+            border-radius: 0.75rem; /* Changed from 50% to square with rounded corners */
+            overflow: hidden;
+            position: relative;
+            /* Styling the placeholder */
+            border: 4px solid var(--color-accent);
+            box-shadow: 0 0 15px var(--color-accent);
+            background-image: url('https://placehold.co/120x120/161B22/38A3A5?text=S.A.');
+            background-size: cover;
+            background-position: center;
+            background-color: var(--color-surface);
+            transition: all 0.3s;
+        }
+
+        .light .avatar-container {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border: 4px solid var(--color-link);
+            background-image: url('https://placehold.co/120x120/F0F4F8/101014?text=S.A.');
+        }
+
+        /* 3.1.1. Avatar Flip Animation */
+        .avatar-flipper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .avatar-container.is-flipped .avatar-flipper {
+            transform: rotateY(180deg);
+        }
+
+        .avatar-front, .avatar-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 0.75rem; /* Match parent container */
+        }
+
+        .avatar-front {
+            background-image: url('https://placehold.co/120x120/161B22/38A3A5?text=S.A.');
+            background-size: cover;
+            background-position: center;
+        }
+        .light .avatar-front {
+            background-image: url('https://placehold.co/120x120/F0F4F8/101014?text=S.A.');
+        }
+
+        .avatar-back {
+            background-color: var(--color-surface);
+            transform: rotateY(180deg);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            padding: 0.75rem;
+        }
+        /* 3.2. Water Animation Styling 
+        ----------------------------------------
+        */
+        #water-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .water-drop {
+            position: absolute;
+            top: -20px; /* Start above the view */
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: rgba(56, 163, 165, 0.6); /* Slightly more transparent */
+            opacity: 0.6; /* Reduced opacity */
+            box-shadow: 0 0 3px rgba(56, 163, 165, 0.4); /* Softer glow */
+            animation: drop-fall 4.5s linear infinite;
+        }
+
+        @keyframes drop-fall {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            80% { opacity: 0.8; }
+            90% { transform: translateY(100vh) scale(0.5); opacity: 0.2; }
+            100% { transform: translateY(100vh) scale(0.1); opacity: 0; }
+        }
+
+        /*
+        4. Sections (Projects, About, Contact)
+        ========================================
+        */
+        section {
+            padding: 4rem 0;
+            background-color: var(--color-bg);
+            transition: background-color 0.3s;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+            color: var(--color-accent);
+            text-shadow: 0 0 8px rgba(56, 163, 165, 0.5);
+            font-family: 'Share Tech Mono', monospace;
+        }
+        
+        .light .section-heading {
+            color: var(--color-link);
+            text-shadow: none;
+        }
+        
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+        
+        .project-card {
+            background-color: var(--color-surface);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            text-align:center ;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(56, 163, 165, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(56, 163, 165, 0.5);
+        }
+
+        .light .project-card {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(56, 163, 165, 0.1);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .project-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+        }
+        
+        .project-tags {
+            margin: 1rem 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        
+        .project-links {
+            margin-top: 1rem;
+        }
+
+        /* About Section Specifics */
+        #about-content {
+            padding: 1rem;
+            background-color: var(--color-surface);
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center; /* Center all content inside the card */
+        }
+
+        .bio-text {
+            font-family: 'Share Tech Mono', monospace;
+            font-family: 'Inter', sans-serif; /* Changed to the main body font for readability */
+            padding: 1rem;
+            text-align: center; /* Center the bio text as requested */
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem; /* Adds space between icon and text */
+            background-color: var(--color-bg);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--color-link);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            box-shadow: 0 0 5px rgba(88, 166, 255, 0.3);
+        }
+
+        .light .skill-item {
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(56, 163, 165, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--color-surface);
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form label {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--color-accent);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--color-link);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .light .contact-form input,
+        .light .contact-form textarea {
+            background-color: white;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form button {
+            margin-top: 2rem;
+        }
+
+
+        /*
+        5. Footer & Message Box
+        ========================================
+        */
+        footer {
+            background-color: var(--color-surface);
+            padding: 1rem 0;
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            border-top: 2px solid var(--color-link);
+            color: var(--color-accent);
+            z-index: 3;
+        }
+
+        /* Message Box Styling */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--color-surface);
+            color: var(--color-accent);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(56, 163, 165, 0.7);
+            z-index: 1000;
+            max-width: 90vw;
+            text-align: center;
+            border: 3px solid var(--color-accent);
+            display: none; 
+            font-family: 'Share Tech Mono', monospace;
+        }
+        
+        .message-box.show { display: block; }
+
+        .message-box-close {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /*
+        6. Desktop Overrides (min-width: 768px)
+        ========================================
+        */
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+        .header-scrolled .logo {
+            font-size: 1.2rem;
+        }
+
+        .nav-link-icon {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+            .nav-links { 
+                display: flex; 
+            }
+            .nav-links a { 
+                margin-left: 2.5rem; 
+                font-family: 'Share Tech Mono', monospace;
+            }
+            
+            .hero-title {
+                font-size: 5rem;
+            }
+            
+            .hero-cta { 
+                flex-direction: row; 
+                justify-content: center; 
+            }
+            
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr); /* Changed to 2 for a 2x2 layout */
+            }
+            
+            #about-content {
+                display: flex;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+
+            .bio-text {
+                padding: 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .avatar-container {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .project-grid {
+                grid-template-columns: repeat(4, 1fr); /* On very large screens, show all 4 in a row */
+            }
+        }
+
+        /*
+        7. Gallery Modal
+        ========================================
+        */
+        #gallery-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1010;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #gallery-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            background-color: var(--color-surface);
+            z-index: 1011;
+            border-radius: 0.75rem;
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 30px rgba(56, 163, 165, 0.6);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        body.gallery-open #gallery-modal-overlay,
+        body.gallery-open #gallery-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #gallery-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        #gallery-content {
+            padding: 2rem;
+            overflow-y: auto;
+            height: 100%;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        #gallery-content img {
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid var(--color-link);
+        }
+
+        /*
+        7.1 About Modal (for projects)
+        ========================================
+        */
+        #about-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1010;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #about-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 700px;
+            height: 70vh;
+            text-align: center;
+            background-color: var(--color-surface);
+            z-index: 1011;
+            border-radius: 0.75rem;
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 30px rgba(56, 163, 165, 0.6);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 2rem;
+        }
+
+        body.about-modal-open #about-modal-overlay,
+        body.about-modal-open #about-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #about-modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; background: none; border: none; color: var(--color-text); cursor: pointer; z-index: 10; }
+        #about-modal-title { font-family: 'Share Tech Mono', monospace; color: var(--color-accent); margin-bottom: 1rem; }
+        #about-modal-content { overflow-y: auto; font-family: 'Inter', sans-serif; line-height: 1.7; }
+        #about-modal-content p { margin-bottom: 1rem; }
+    </style>
+
+<style>
+        /*
+        7.2 Email Modal (for contact form)
+        ========================================
+        */
+        #email-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); z-index: 1010;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #email-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; max-width: 600px;
+            background-color: var(--color-surface); z-index: 1011;
+            border-radius: 0.75rem; border: 2px solid var(--color-accent);
+            box-shadow: 0 0 30px rgba(56, 163, 165, 0.6);
+            display: flex; flex-direction: column;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 2rem;
+        }
+
+        body.email-modal-open #email-modal-overlay,
+        body.email-modal-open #email-modal {
+            opacity: 1; visibility: visible;
+        }
+
+        #email-modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; background: none; border: none; color: var(--color-text); cursor: pointer; z-index: 10; }
+        
+        .contact-links-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem; max-width: 800px; margin: 0 auto;
+        }
+    </style>
+
+    <style>
+        /*
+        8. Custom Scrollbar
+        ========================================
+        */
+        /* For Webkit browsers (Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 8px; /* Makes scrollbar smaller */
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-surface); /* Color of the scrolling track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--color-accent); /* Color of the scroll thumb */
+            border-radius: 10px; /* Roundness of the scroll thumb */
+            border: 2px solid var(--color-surface); /* Creates padding around the thumb */
+        }
+
+        /* For Firefox */
+        html { scrollbar-width: thin; scrollbar-color: var(--color-accent) var(--color-surface); }
+    </style>
+</head>
+<body onload="startWaterEffect()">
+    <!-- Message Box Element -->
+    <div id="message-box" class="message-box">
+        <p id="message-box-text"></p>
+        <button id="message-box-close" class="message-box-close">Close</button>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal-overlay"></div>
+    <div id="gallery-modal">
+        <button id="gallery-modal-close" aria-label="Close gallery"><i class="fas fa-times"></i></button>
+        <div id="gallery-content">
+            <!-- Images will be injected here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- About Modal (for Projects) -->
+    <div id="about-modal-overlay"></div>
+    <div id="about-modal">
+        <button id="about-modal-close" aria-label="Close about pop-up"><i class="fas fa-times"></i></button>
+        <h3 id="about-modal-title"></h3>
+        <div id="about-modal-content">
+            <!-- About text will be injected here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Email Modal (for Contact Form) -->
+    <div id="email-modal-overlay"></div>
+    <div id="email-modal">
+        <button id="email-modal-close" aria-label="Close contact form"><i class="fas fa-times"></i></button>
+        <!-- The form from the original contact section will be moved here -->
+    </div>
+
+    <!-- Sidebar Menu (for Mobile) -->
+    <div id="sidebar-overlay"></div>
+    <div id="sidebar-menu">
+        <div class="sidebar-header">
+            <div class="logo">NAVIGATE</div>
+            <button id="sidebar-close" aria-label="Close menu"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-links">
+            <a href="#hero">HOME</a>
+            <a href="#about">ABOUT ME</a>
+            <a href="#skills">SKILLS</a>
+            <a href="#projects">CASE_FILES</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">NENSHA JENNIFER DOTIMI</div>
+                <button id="theme-toggle" aria-label="Toggle dark/light theme">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+                <button id="menu-toggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+                <div class="nav-links">
+                    <a href="#hero">
+                        <i class="fas fa-home nav-link-icon"></i><span class="nav-link-text">SYSTEM_ROOT</span>
+                    </a>
+                    <a href="#about">
+                        <i class="fas fa-user-secret nav-link-icon"></i><span class="nav-link-text">ACCESS_PROFILE</span>
+                    </a>
+                    <a href="#skills">
+                        <i class="fas fa-cogs nav-link-icon"></i><span class="nav-link-text">SKILL_MATRIX</span>
+                    </a>
+                    <a href="#projects">
+                        <i class="fas fa-folder-open nav-link-icon"></i><span class="nav-link-text">CASE_FILES</span>
+                    </a>
+                    <a href="#contact">
+                        <i class="fas fa-paper-plane nav-link-icon"></i><span class="nav-link-text">INITIATE_COMM</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="announcement-bar">
+        <div class="announcement-content">
+            <span>// LEVERAGING MICROBIOLOGY EXPERTISE WITH ADVANCED DATA ANALYTICS...</span>
+            <span>// EXPERT IN PYTHON, SQL, & POWER BI FOR ACTIONABLE BUSINESS INTELLIGENCE...</span>
+            <span>// OPEN TO JOBS, CONTRACTS, AND COLLABORATIONS IN DATA-DRIVEN ROLES...</span>
+            <span>// LEVERAGING MICROBIOLOGY EXPERTISE WITH ADVANCED DATA ANALYTICS...</span>
+            <span>// LOOKING FORWARD TO NEW CHALLENGES AND OPPORTUNITIES...</span>
+            <span>// EXPERT IN PYTHON, SQL, & POWER BI FOR ACTIONABLE BUSINESS INTELLIGENCE...</span>
+            <span>// OPEN TO JOBS, CONTRACTS, AND COLLABORATIONS IN DATA-DRIVEN ROLES...</span>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="flex-center">
+            <!-- Water Container for the effect -->
+            <div id="water-container"></div>
+            
+            <div class="container hero-content">
+                
+                <!-- AVATAR CONTAINER (Now Square) -->
+                <div class="avatar-container">
+                    <div class="avatar-flipper">
+                        <div class="avatar-front" style="background-image: url('avt.png');"></div>
+                        <div class="avatar-back">
+                            <!-- Icons will be injected here by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="hero-subtitle">NENSHA JENNIFER DOTIMI</p>
+                <h1 class="hero-title">LET'S DISCUSS DATA</h1>
+                <p class="hero-subtitle">MICROBIOLOGIST | DATA ANALYST |  TURNING DATA INTO INSIGHTS/ SPSS/JASP/PROJECT ANALYST | PROCUREMENT MANAGER | DATA EXPERT | BUSINESS INTELLIGENCE</p>
+                
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">
+                        PROJECTS <i class="fas fa-microchip ml-2"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        CONTACT <i class="fas fa-terminal ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/Jennifer2541997" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/jennifer-nensha-790885352/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" id="hero-email-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-heading">ABOUT ME</h2>
+                <div id="about-content">
+                    <p class="bio-text">
+                       NENSHA JENNIFER DOTIMI  is a detailed oriented Microbiologist at Silhouette diagnostic consultant, with a passion for numbers. Her professional tagline is “Transforming data into insights, one analysis at a time” she analyses microbial samples to help diagnose diseases. 
+                       <br><br>  
+                       She also utilizes her accounting skills in the finance department to ensure seamless operations.
+                       <br><br
+                        She is currently expanding her skill set through the ALX course in data analytics. This training will enable her to leverage data driven insights to drive business growth and improve healthcare outcomes. Jennifer's long term goal is to transition into a data analytics role in a reputable company abroad. She is excited about the prospect of applying data analytics to drive business decisions and improve patient care.
+                        <br> She is a microbiology expert, also proficient in accounting and academic excellence. Jennifer is eager to leverage her unique blend of microbiology, accounting , and data analytics skills to drive success in her future endeavors. 
+                    </p>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-heading">SKILLS</h2>
+                <div class="skills-grid">
+                    <span class="skill-item"><i class="fab fa-python" style="color:#38A3A5;"></i> PYTHON</span>
+                    <span class="skill-item"><i class="fas fa-database" style="color:#58A6FF;"></i> SQL/NoSQL</span>
+                    <span class="skill-item"><i class="fas fa-chart-area" style="color:#38A3A5;"></i> TABLEAU/POWERBI</span>
+                    <span class="skill-item"><i class="fas fa-project-diagram" style="color:#58A6FF;"></i>LABORATORY DIGNOSTIC</span>
+                    <span class="skill-item"><i class="fas fa-cloud" style="color:#38A3A5;"></i> CLOUD (GCP/AWS)</span>
+                    <span class="skill-item"><i class="fas fa-sitemap" style="color:#58A6FF;"></i> DATA MODELLING</span>
+                    <span class="skill-item"><i class="fas fa-search-plus" style="color:#38A3A5;"></i> RESEARCH & ANALYSIS</span>
+                    <span class="skill-item"><i class="fas fa-laptop-code" style="color:#38A3A5;"></i> DIGITAL PROFICIENCY</span>
+                    <span class="skill-item"><i class="fas fa-clipboard-check" style="color:#38A3A5;"></i> ADMINISTRATIVE COMPETENCE</span>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-heading">FEATURED CASE STUDIES</h2>
+                <div class="project-grid">
+                    
+                    <!-- Project 4: Video Project -->
+                    <div class="project-card">
+                        <video class="project-video" autoplay loop muted playsinline src="video1.mp4" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='var(--color-bg)';">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="project-content">
+                            <h3>REFERRAL RECOGNITION OPTIMIZATION</h3>
+                            <p>How do you turn a massive spreadsheet of data into a focused business strategy? Just finished a high-impact project helping a company optimize their referral recognition program."
+</p>
+                            <div class="project-tags">
+                                <span class="tag"> Jupyter Notebook (Python/Pandas)</span>
+                                <span class="tag">Excel</span>
+                                <span class="tag">Power BI</span>
+                                <span class="tag">Google Sheets</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary btn-sm view-gallery-btn" data-project="project-4">VIEW GALLERY</a>
+                                <a href="#" class="btn btn-secondary btn-sm about-btn" data-project="project-4">ABOUT</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <!-- Project 1: Retail Sales Forecasting -->
+                    <div class="project-card">
+                        <img src="monthly.jpeg" alt="Retail Sales Forecasting Screenshot" class="project-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D1117/38A3A5?text=PREDICTIVE+ANALYTICS';">
+                        <div class="project-content">
+                            <h3>MONTHLY EXPENSES DASHBOARD (Jan–Sep 2025)</h3>
+                            <p>Built with Power BI, this dashboard visualizes monthly spending trends and key expense categories for a Hospital.Key insights:
+Top spending categories (e.g. consumables, maintenance, salary)
+Monthly totals and trends over time
+Interactive slicers for easy filtering.</p>
+                            <div class="project-tags">
+                                <span class="tag">Excel (data cleaning)</span>
+                                <span class="tag">Power Query</span>
+                                <span class="tag">Power BI (visualization)</span>
+                               
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary btn-sm view-gallery-btn" data-project="project-1">VIEW GALLERY</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2: Customer Churn Prediction -->
+                    <div class="project-card">
+                        <img src="LAB.jpg" alt="LABORATORY CULTURE" class="project-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/161B22/58A6FF?text=CLASSIFICATION+ENGINE';">
+                        <div class="project-content">
+                            <h3>LABORATORY CULTURE</h3>
+                            <p>The glass vessels, including beakers, flasks, and possibly condensers, are standard equipment used for mixing, heating, and observing chemical reactions or biological culturing.  </p>
+                            <div class="project-tags">
+                               
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary btn-sm view-gallery-btn" data-project="project-2">VIEW GALLERY</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Real-Time Logistics Dashboard -->
+                    <div class="project-card">
+                        <img src="MICRO.jpg" alt="Logistics Dashboard Screenshot" class="project-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D1117/58A6FF?text=BUSINESS+INTELLIGENCE+DASH';">
+                        <div class="project-content">
+                            <h3>MICROBIOLOGICAL PROJECT</h3>
+                            <p>The laboratory environment is a visual metaphor for the methodological rigor I bring to data science. It symbolizes the controlled conditions necessary for analytical research, where hypotheses are tested, models are carefully built and validated (A/B testing, cross-validation), and variables are isolated.</p>
+                            <div class="project-tags">
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn btn-primary btn-sm view-gallery-btn" data-project="project-3">VIEW GALLERY</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <iframe class="project-video" src="https://www.youtube.com/embed/sc0RLdWwFmc" title="Alx professional foundation, ThinkEd team entry, for the Team project Showcase Competition" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                       <div class="project-content">
+                           <h3>ALX Team Presentation</h3>
+                           <p>Developed an ARIMA model to predict quarterly retail sales with 95% confidence, resulting in a 15% reduction in stock inefficiency.</p>
+                           <div class="project-tags">
+                        
+                           </div>
+                           <div class="project-links">
+                           </div>
+                       </div>
+                   </div>
+                   <div class="project-card">
+                       <img src="ALXCAT.jpeg" alt="Video Project Screenshot" class="project-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/161B22/38A3A5?text=VIDEO+PROJECT';">
+                      <div class="project-content">
+                          <h3> DATA ANALYTICS CERTIFICATE FROM ALX</h3>
+                          <p>I finally got my Data Analytics certificate from ALX - I’m officially a certified analyst! 🥳
+
+I’m honestly so proud of myself for following it through. The projects were tough, but I truly enjoyed the challenge. Each task stretched me, pushed me to think deeper, and reminded me why I fell in love with data in the first place.</p>
+                          <div class="project-tags">
+                              <span class="tag"></span>
+                              <span class="tag"></span>
+                              <span class="tag"></span>
+                              <span class="tag"></span>
+                          </div>
+                          <div class="project-links">
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-heading">INITIATE COMMUNICATION</h2>
+                <div id="contact-content">
+                    <p style="text-align: center; margin-bottom: 2rem; font-family: 'Share Tech Mono', monospace; color: var(--color-accent); text-shadow: 0 0 5px rgba(56, 163, 165, 0.4);">
+                         SELECT PREFERRED COMMUNICATION CHANNEL.
+                    </p>
+                    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                        <!-- Primary Button -->
+                        <button id="email-modal-open" class="btn btn-primary" style="width: 100%; max-width: 420px;">
+                            <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i> Email
+                        </button>
+                        <!-- Secondary Buttons Group -->
+                        <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                            <a href="https://www.linkedin.com/in/jennifer-nensha-790885352/" target="_blank" class="btn btn-secondary">
+                                <i class="fab fa-linkedin" style="margin-right: 0.5rem;"></i> LinkedIn
+                            </a>
+                            <a href="https://github.com/Jennifer2541997" target="_blank" class="btn btn-secondary">
+                                <i class="fab fa-github" style="margin-right: 0.5rem;"></i> GitHub
+                            </a>
+                            <a href="https://docs.google.com/document/d/1YD5b2Cxr16QFWgvdPaLzfLy4i4EegEyDj98T1cnVUMU/edit?usp=sharing" target="_blank" class="btn btn-secondary">
+                                <i class="fas fa-file-alt" style="margin-right: 0.5rem;"></i> Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>// 2025 STANLEY AKEGBEOTU. SYSTEM INTEGRITY OPTIMAL. <i class="fas fa-lock"></i></p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Global Helpers ---
+        const body = document.body;
+        const themeToggle = document.getElementById('theme-toggle');
+        const header = document.querySelector('header');
+        const themeIcon = document.getElementById('theme-icon');
+        
+        // Message box elements
+        const messageBox = document.getElementById('message-box');
+        const messageBoxText = document.getElementById('message-box-text');
+        const messageBoxClose = document.getElementById('message-box-close');
+        
+        // Sidebar menu elements
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebarMenu = document.getElementById('sidebar-menu');
+        const sidebarClose = document.getElementById('sidebar-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const sidebarLinks = document.querySelectorAll('#sidebar-menu a');
+
+        // Gallery Modal Elements
+        const galleryModal = document.getElementById('gallery-modal');
+        const galleryOverlay = document.getElementById('gallery-modal-overlay');
+        const galleryCloseBtn = document.getElementById('gallery-modal-close');
+        const galleryContent = document.getElementById('gallery-content');
+        const galleryButtons = document.querySelectorAll('.view-gallery-btn');
+
+        // About Modal Elements
+        const aboutModal = document.getElementById('about-modal');
+        const aboutOverlay = document.getElementById('about-modal-overlay');
+        const aboutCloseBtn = document.getElementById('about-modal-close');
+        const aboutModalTitle = document.getElementById('about-modal-title');
+        const aboutModalContent = document.getElementById('about-modal-content');
+        const aboutButtons = document.querySelectorAll('.about-btn');
+
+        // Email Modal Elements
+        const emailModal = document.getElementById('email-modal');
+        const emailOverlay = document.getElementById('email-modal-overlay');
+        const emailOpenBtn = document.getElementById('email-modal-open');
+        const emailCloseBtn = document.getElementById('email-modal-close');
+        let contactForm; // Will be defined when the modal is populated
+
+        // --- Gallery Data (using placeholders) ---
+        const projectImages = {
+            'project-1': ['monthly1.png' , 'monthly.jpeg'],
+            'project-2': ['LAB.jpg' ],
+            'project-3': ['MICRO.jpg' ],
+            'project-4': ['vidimg1.jpg'],
+        };
+
+        // --- About Data (using placeholders) ---
+        const projectAbouts = {
+            'project-1': { title: 'ABOUT: FORECASTING ACCURACY MODEL', content: '<p>This project involved a deep dive into time-series analysis to create a robust forecasting model. The primary challenge was handling seasonality and external market factors. By leveraging an ARIMA model, we were able to significantly improve prediction accuracy over the previous baseline.</p><p>The final deliverable was not just the model, but a comprehensive report detailing its performance, limitations, and recommendations for integration into the inventory management system.</p>' },
+            'project-2': { title: 'ABOUT: CHURN REDUCTION PLATFORM', content: '<p>The goal was to proactively identify customers likely to churn. We used a Random Forest classifier due to its high accuracy and ability to handle a mix of numerical and categorical data. The model was trained on several years of customer behavior data.</p><p>A lightweight Flask API was built to serve predictions, allowing customer service teams to access risk scores in real-time and take preventative action.</p>' },
+            'project-3': { title: 'ABOUT: OPERATIONAL METRICS DASHBOARD', content: '<p>This BI project consolidated data from multiple disparate sources (shipping, warehousing, finance) into a single source of truth. An ETL pipeline was constructed to clean and transform the data before loading it into a PostgreSQL data warehouse.</p><p>The Tableau dashboard provides executives with a high-level overview while allowing managers to drill down into specific KPIs for their departments, leading to more informed and faster decision-making.</p>' },
+            'project-4': { title: 'ABOUT: REFERRAL RECOGNITION OPTIMIZATION', content: '<h3>Challenge</h3><p>I recently completed an analytical project to help a client refine their annual Christmas gift strategy for referring doctors. Facing a challenge of high volume and limited budget, the goal was to identify the most impactful referring partners to ensure maximum recognition and relationship strengthening.</p><h3>My Approach & Technical Stack</h3><p><b>Problem:</b> The client needed a data-driven method to prioritize a large list of referring doctors for holiday gift distribution.</p><p><b>Data Preparation (Jupyter/Python & Excel):</b> I began by cleaning, standardizing, and structuring the raw referral data. This involved handling inconsistencies, merging disparate records, and calculating KPIs like highest single referral and average per doctor.</p><p><b>Analysis & Summary (Power BI & Google Sheets):</b> Power BI was used to create interactive visuals and a dashboard, allowing stakeholders to easily segment doctors based on referral metrics. Google Sheets served as a centralized, easily shareable summary table for the final, prioritized list.</p><p><b>Presentation (PowerPoint):</b> A clear and concise presentation was developed to communicate the strategic recommendations and justify the data-backed selection criteria.</p><h3>Insight Delivered</h3><p>The analysis provided a prioritized list of high-value referring doctors, allowing the company to allocate their holiday budget effectively. This ensures that their limited resources are directed toward nurturing the most valuable professional relationships, maximizing the return on investment (ROI) for their appreciation initiative.</p>' },
+        };
+
+        // Water effect constants and elements
+        const announcementBar = document.getElementById('announcement-bar');
+        const waterContainer = document.getElementById('water-container');
+        const DROP_INTERVAL_MS = 1000; // Time between new drops and level update
+
+        /**
+         * Displays a custom message box instead of using alert() or confirm().
+         * @param {string} message - The text to display.
+         */
+        const showMessageBox = (message) => {
+            messageBoxText.textContent = message;
+            messageBox.classList.add('show');
+        };
+
+        messageBoxClose.addEventListener('click', () => {
+            messageBox.classList.remove('show');
+        });
+
+        // --- 1. Theme Toggling Logic ---
+        const setInitialTheme = () => {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme === 'light') {
+                body.classList.add('light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                body.classList.remove('light');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        };
+
+        const toggleTheme = () => {
+            const isLight = body.classList.toggle('light');
+            if (isLight) {
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        };
+
+        themeToggle.addEventListener('click', toggleTheme);
+        document.addEventListener('DOMContentLoaded', setInitialTheme);
+
+        // --- Sidebar Menu Logic ---
+        const openSidebar = () => body.classList.add('sidebar-open');
+        const closeSidebar = () => body.classList.remove('sidebar-open');
+
+        if (menuToggle && sidebarMenu && sidebarClose && sidebarOverlay) {
+            menuToggle.addEventListener('click', openSidebar);
+            sidebarClose.addEventListener('click', closeSidebar);
+            sidebarOverlay.addEventListener('click', closeSidebar);
+
+            // Close sidebar when a link is clicked
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', closeSidebar);
+            });
+        }
+
+
+        // --- Header Scroll Logic ---
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+                announcementBar.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+                announcementBar.classList.remove('header-scrolled');
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        // --- Gallery Modal Logic ---
+        const openGallery = (projectId) => {
+            const images = projectImages[projectId];
+            if (!images) return;
+
+            // Clear previous images
+            galleryContent.innerHTML = '';
+
+            // Populate with new images
+            images.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = "Project screenshot";
+                galleryContent.appendChild(img);
+            });
+
+            body.classList.add('gallery-open');
+        };
+
+        const closeGallery = () => {
+            body.classList.remove('gallery-open');
+        };
+
+        galleryButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                openGallery(button.dataset.project);
+            });
+        });
+
+        galleryCloseBtn.addEventListener('click', closeGallery);
+        galleryOverlay.addEventListener('click', closeGallery);
+
+        // --- About Modal Logic ---
+        const openAboutModal = (projectId) => {
+            const aboutData = projectAbouts[projectId];
+            if (!aboutData) return;
+
+            aboutModalTitle.textContent = aboutData.title;
+            aboutModalContent.innerHTML = aboutData.content;
+
+            body.classList.add('about-modal-open');
+        };
+
+        const closeAboutModal = () => {
+            body.classList.remove('about-modal-open');
+        };
+
+        aboutButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                openAboutModal(button.dataset.project);
+            });
+        });
+
+        if (aboutCloseBtn) {
+            aboutCloseBtn.addEventListener('click', closeAboutModal);
+            aboutOverlay.addEventListener('click', closeAboutModal);
+        }
+
+        // --- 2. Water Droplet Effect Logic ---
+        const createDrop = () => {
+            const drop = document.createElement('div');
+            drop.classList.add('water-drop');
+
+            // Apply a random slight horizontal offset from the corner for subtle variation
+            const randomHorizontalPosition = Math.random() * 100; // Random position from 0% to 100%
+            drop.style.left = `${randomHorizontalPosition}vw`;
+
+            waterContainer.appendChild(drop);
+
+            // Clean up the element after the animation finishes (4.5s defined in CSS)
+            setTimeout(() => {
+                drop.remove();
+            }, 4500);
+        };
+
+        const startWaterEffect = () => {
+            if (!waterContainer) return;
+
+            // Start the drop interval
+            setInterval(createDrop, DROP_INTERVAL_MS);
+
+            // Initial call to start the process immediately
+            createDrop();
+        }
+        
+        // --- Avatar Flip Logic ---
+        const startAvatarFlip = () => {
+            const avatarContainer = document.querySelector('.avatar-container');
+            const avatarBack = document.querySelector('.avatar-back');
+            if (!avatarContainer || !avatarBack) return;
+
+            const icons = [
+                'fa-chart-line', 'fa-chart-bar', 'fa-chart-pie', 'fa-chart-area',
+                'fa-project-diagram', 'fa-database', 'fa-table', 'fa-cogs',
+                'fa-search-dollar', 'fa-network-wired', 'fa-brain', 'fa-robot'
+            ];
+
+            const updateIcons = () => {
+                // Shuffle icons and pick the first 6
+                const shuffledIcons = icons.sort(() => 0.5 - Math.random());
+                const selectedIcons = shuffledIcons.slice(0, 6);
+
+                avatarBack.innerHTML = ''; // Clear previous icons
+                selectedIcons.forEach(iconClass => {
+                    const iconElement = document.createElement('i');
+                    iconElement.className = `fas ${iconClass}`;
+                    iconElement.style.color = Math.random() > 0.5 ? 'var(--color-accent)' : 'var(--color-link)';
+                    iconElement.style.fontSize = '1.2rem';
+                    avatarBack.appendChild(iconElement);
+                });
+            };
+
+            setInterval(() => {
+                updateIcons(); // Update icons right before the flip
+                avatarContainer.classList.toggle('is-flipped');
+            }, 4000);
+        };
+        document.addEventListener('DOMContentLoaded', startAvatarFlip);
+
+        // --- Email Modal & Formspree Logic ---
+        const openEmailModal = () => {
+            // Check if the form is already there to prevent duplication
+            if (!emailModal.querySelector('form')) {
+                // Create and inject the form HTML into the modal
+                emailModal.insertAdjacentHTML('beforeend', `
+                    <h3 id="email-modal-title" style="font-family: 'Share Tech Mono', monospace; color: var(--color-accent); margin-bottom: 1rem; text-align: center;">SECURE TRANSMISSION</h3>
+                    <form class="contact-form" id="popup-contact-form" action="https://formspree.io/f/xwpabrzq" method="POST">
+                        <label for="popup-name">NAME</label>
+                        <input type="text" id="popup-name" name="name" required placeholder="SYSTEM_USER_ID">
+                        
+                        <label for="popup-email">EMAIL</label>
+                        <input type="email" id="popup-email" name="email" required placeholder="AUTHORIZED_CONTACT@DOMAIN.COM">
+                        
+                        <label for="popup-message">MESSAGE</label>
+                        <textarea id="popup-message" name="message" rows="5" required placeholder="REQUEST_PARAMETERS; PROJECT_SCOPE..."></textarea>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            TRANSMIT DATA <i class="fas fa-satellite-dish ml-2"></i>
+                        </button>
+                    </form>
+                `);
+                // Now that the form exists, get a reference to it and add the submit listener
+                contactForm = document.getElementById('popup-contact-form');
+                contactForm.addEventListener('submit', handleFormSubmit);
+            }
+            body.classList.add('email-modal-open');
+        };
+
+        const closeEmailModal = () => {
+            body.classList.remove('email-modal-open');
+        };
+
+        const handleFormSubmit = async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    closeEmailModal();
+                    showMessageBox('// TRANSMISSION SUCCESSFUL. Thank you for your message, I will get back to you shortly.');
+                } else {
+                    showMessageBox('// TRANSMISSION FAILED. Please try again or use another contact method.');
+                }
+            } catch (error) {
+                showMessageBox('// NETWORK ERROR. Could not send message. Please check your connection.');
+            }
+        };
+
+        emailOpenBtn.addEventListener('click', openEmailModal);
+        emailCloseBtn.addEventListener('click', closeEmailModal);
+        emailOverlay.addEventListener('click', closeEmailModal);
+
+        // Also trigger email modal from hero icon
+        const heroEmailIcon = document.getElementById('hero-email-icon');
+        if (heroEmailIcon) {
+            heroEmailIcon.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent the link from navigating
+                openEmailModal();
+            });
+        }
+
+        // --- 3. Contact Form Submission ---
+
+        </script>
+</body>
+</html>
