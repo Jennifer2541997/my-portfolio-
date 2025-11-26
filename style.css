@@ -1,0 +1,968 @@
+
+        /*
+        1. Global Variables & Base Styles (Mobile-First: All fixed widths are forbidden)
+        ========================================
+        */
+        :root {            
+            /* Dark Mode Defaults */
+            --color-bg: #0D1117; /* Deep Charcoal */
+            --color-text: #E6EDF3; /* Light Gray */
+            --color-accent: #38A3A5; /* Teal/Cyan - Primary highlight */
+            --color-surface: #161B22; /* Darker Surface */
+            --color-link: #58A6FF; /* Blue Link */
+            --header-height-mobile: 48px;
+            --header-height-scrolled: 40px;
+            --water-fill-start-color: rgba(56, 163, 165, 0.8); /* Teal with opacity */
+            --water-fill-end-color: rgba(56, 163, 165, 0.5); /* Lighter Teal with opacity */
+        }
+
+        /* Light Mode Overrides */
+        .light {
+            --color-bg: #FFFFFF; /* Pure White */
+            --color-text: #101014; /* Near Black */
+            --color-accent: #38A3A5; /* Teal/Cyan (Primary Accent) */
+            --color-accent-light: #8AE5E8; /* Lighter Teal for gradients/shadows */
+            --color-surface: #F0F4F8; /* Light Gray Surface */
+            --color-link: #58A6FF; /* Blue Link/Secondary Highlight */
+            --water-fill-start-color: rgba(56, 163, 165, 0.5); /* Teal with opacity */
+            --water-fill-end-color: rgba(56, 163, 165, 0.2); /* Lighter Teal with opacity */
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.3s;
+            margin: 0.5rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-bg); 
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 5px var(--color-accent), 0 0 10px rgba(56, 163, 165, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: #55CACA;
+            transform: translateY(-2px);
+            box-shadow: 0 0 8px var(--color-accent), 0 0 20px rgba(56, 163, 165, 0.6);
+        }
+        
+        .light .btn-primary {
+            color: var(--color-surface);
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 6px rgba(56, 163, 165, 0.4); 
+        }
+
+        .light .btn-primary:hover {
+            background-color: var(--color-accent-light);
+            box-shadow: 0 6px 10px rgba(56, 163, 165, 0.5);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 3px var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(56, 163, 165, 0.1); 
+            transform: translateY(-2px);
+            box-shadow: 0 0 8px var(--color-accent);
+        }
+        
+        .light .btn-secondary {
+            box-shadow: 0 0 0 transparent;
+            color: var(--color-link);
+            border-color: var(--color-link);
+        }
+        
+        .light .btn-secondary:hover {
+            background-color: rgba(88, 166, 255, 0.1); 
+            box-shadow: 0 4px 6px rgba(88, 166, 255, 0.2);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            color: var(--color-text);
+        }
+        
+        .light h1, .light h2, .light h3 {
+            color: var(--color-link); 
+        }
+
+        a {
+            color: var(--color-link);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /*
+        2. Header & Navigation 
+        ========================================
+        */
+        header {
+            background-color: var(--color-surface);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--color-accent); 
+            box-shadow: 0 2px 10px rgba(56, 163, 165, 0.2);
+            padding: 0.5rem 0; 
+            height: var(--header-height-mobile);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        /* Shrinking Header Styles */
+        header.header-scrolled {
+            height: var(--header-height-scrolled);
+            padding: 0.25rem 0;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-shadow: 0 0 5px var(--color-accent);
+        }
+        
+        .light .logo { text-shadow: none; color: var(--color-link); }
+
+        #theme-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        #theme-toggle:hover {
+            color: var(--color-accent);
+        }
+
+        #menu-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            margin-left: 1rem; /* Space between theme and menu toggles */
+        }
+
+        @media (min-width: 768px) {
+            #menu-toggle {
+                display: none; /* Hide hamburger on desktop */
+            }
+        }
+
+        .nav-links { display: none; } 
+        /* The previous design used CSS to hide .nav-links on mobile */
+
+        .nav-link-text { transition: opacity 0.3s ease; }
+        .nav-link-icon { display: none; transition: opacity 0.3s ease; }
+
+        .header-scrolled .nav-link-text {
+            opacity: 0;
+            display: none;
+        }
+        .header-scrolled .nav-link-icon {
+            display: inline;
+            opacity: 1;
+            font-size: 1.1rem;
+        }
+
+        /* Announcement Bar */
+        #announcement-bar {
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            padding: 0.25rem 0;
+            white-space: nowrap;
+            overflow: hidden;
+            position: sticky;
+            top: var(--header-height-mobile); /* Stick below the header */
+            z-index: 99;
+            transition: top 0.3s ease-in-out;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        #announcement-bar.header-scrolled {
+            top: var(--header-height-scrolled); /* Adjust position when header shrinks */
+        }
+
+        .announcement-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 60s linear infinite;
+        }
+
+        .announcement-content span {
+            padding-right: 5rem; /* Space between repeated text */
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /*
+        2.1 Sidebar Menu (Mobile)
+        ========================================
+        */
+        #sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        body.sidebar-open #sidebar-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -280px; /* Start off-screen */
+            width: 280px;
+            height: 100%;
+            background-color: var(--color-surface);
+            z-index: 1001;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.3s ease-in-out;
+            border-left: 2px solid var(--color-accent);
+        }
+
+        body.sidebar-open #sidebar-menu {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header .logo { font-size: 1.2rem; }
+        #sidebar-close { font-size: 1.5rem; cursor: pointer; background: none; border: none; color: var(--color-text); }
+
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-links a {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(56, 163, 165, 0.2);
+        }
+        
+        /*
+        3. Hero Section & Water Animation
+        ========================================
+        */
+        #hero {
+            position: relative;
+            /* Ensures it takes up at least the visible screen space */
+            min-height: calc(100vh - var(--header-height-mobile) - 28px); /* Adjusted for announcement bar */
+            padding-top: 3rem; 
+            padding-bottom: 3rem;
+            overflow: hidden; /* Contains the water effect */
+        }
+
+        .hero-content {
+            z-index: 2; /* Keep content above the water */
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 3px rgba(56, 163, 165, 0.5);
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            color: var(--color-link);
+        }
+        
+        /* 3.1. AVATAR STYLING (UPDATED TO SQUARE) 
+        ----------------------------------------
+        */
+        .avatar-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem; /* Center and spacing below */
+            border-radius: 0.75rem; /* Changed from 50% to square with rounded corners */
+            overflow: hidden;
+            position: relative;
+            /* Styling the placeholder */
+            border: 4px solid var(--color-accent);
+            box-shadow: 0 0 15px var(--color-accent);
+            background-image: url('https://placehold.co/120x120/161B22/38A3A5?text=S.A.');
+            background-size: cover;
+            background-position: center;
+            background-color: var(--color-surface);
+            transition: all 0.3s;
+        }
+
+        .light .avatar-container {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border: 4px solid var(--color-link);
+            background-image: url('https://placehold.co/120x120/F0F4F8/101014?text=S.A.');
+        }
+
+        /* 3.1.1. Avatar Flip Animation */
+        .avatar-flipper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .avatar-container.is-flipped .avatar-flipper {
+            transform: rotateY(180deg);
+        }
+
+        .avatar-front, .avatar-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            border-radius: 0.75rem; /* Match parent container */
+        }
+
+        .avatar-front {
+            background-image: url('https://placehold.co/120x120/161B22/38A3A5?text=S.A.');
+            background-size: cover;
+            background-position: center;
+        }
+        .light .avatar-front {
+            background-image: url('https://placehold.co/120x120/F0F4F8/101014?text=S.A.');
+        }
+
+        .avatar-back {
+            background-color: var(--color-surface);
+            transform: rotateY(180deg);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            padding: 0.75rem;
+        }
+        /* 3.2. Water Animation Styling 
+        ----------------------------------------
+        */
+        #water-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .water-drop {
+            position: absolute;
+            top: -20px; /* Start above the view */
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: rgba(56, 163, 165, 0.6); /* Slightly more transparent */
+            opacity: 0.6; /* Reduced opacity */
+            box-shadow: 0 0 3px rgba(56, 163, 165, 0.4); /* Softer glow */
+            animation: drop-fall 4.5s linear infinite;
+        }
+
+        @keyframes drop-fall {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            80% { opacity: 0.8; }
+            90% { transform: translateY(100vh) scale(0.5); opacity: 0.2; }
+            100% { transform: translateY(100vh) scale(0.1); opacity: 0; }
+        }
+
+        /*
+        4. Sections (Projects, About, Contact)
+        ========================================
+        */
+        section {
+            padding: 4rem 0;
+            background-color: var(--color-bg);
+            transition: background-color 0.3s;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+            color: var(--color-accent);
+            text-shadow: 0 0 8px rgba(56, 163, 165, 0.5);
+            font-family: 'Share Tech Mono', monospace;
+        }
+        
+        .light .section-heading {
+            color: var(--color-link);
+            text-shadow: none;
+        }
+        
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+        
+        .project-card {
+            background-color: var(--color-surface);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            text-align:center ;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(56, 163, 165, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(56, 163, 165, 0.5);
+        }
+
+        .light .project-card {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(56, 163, 165, 0.1);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .project-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        
+        .project-card iframe.project-video {
+            aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio for videos */
+            height: auto;
+            width: 100%;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+        }
+        
+        .project-tags {
+            margin: 1rem 0;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        
+        .project-links {
+            margin-top: 1rem;
+        }
+
+        /* About Section Specifics */
+        #about-content {
+            padding: 1rem;
+            background-color: var(--color-surface);
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center; /* Center all content inside the card */
+        }
+
+        .bio-text {
+            font-family: 'Share Tech Mono', monospace;
+            font-family: 'Inter', sans-serif; /* Changed to the main body font for readability */
+            padding: 1rem;
+            text-align: center; /* Center the bio text as requested */
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem; /* Adds space between icon and text */
+            background-color: var(--color-bg);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--color-link);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            box-shadow: 0 0 5px rgba(88, 166, 255, 0.3);
+        }
+
+        .light .skill-item {
+            background-color: #f9f9f9;
+            box-shadow: 0 0 5px rgba(56, 163, 165, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--color-surface);
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form label {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--color-accent);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--color-link);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .light .contact-form input,
+        .light .contact-form textarea {
+            background-color: white;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form button {
+            margin-top: 2rem;
+        }
+
+
+        /*
+        5. Footer & Message Box
+        ========================================
+        */
+        footer {
+            background-color: var(--color-surface);
+            padding: 1rem 0;
+            text-align: center;
+            font-family: 'Share Tech Mono', monospace;
+            border-top: 2px solid var(--color-link);
+            color: var(--color-accent);
+            z-index: 3;
+        }
+
+        /* Message Box Styling */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--color-surface);
+            color: var(--color-accent);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(56, 163, 165, 0.7);
+            z-index: 1000;
+            max-width: 90vw;
+            text-align: center;
+            border: 3px solid var(--color-accent);
+            display: none; 
+            font-family: 'Share Tech Mono', monospace;
+        }
+        
+        .message-box.show { display: block; }
+
+        .message-box-close {
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /*
+        6. Desktop Overrides (min-width: 768px)
+        ========================================
+        */
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+        .header-scrolled .logo {
+            font-size: 1.2rem;
+        }
+
+        .nav-link-icon {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+            .nav-links { 
+                display: flex; 
+            }
+            .nav-links a { 
+                margin-left: 2.5rem; 
+                font-family: 'Share Tech Mono', monospace;
+            }
+            
+            .hero-title {
+                font-size: 5rem;
+            }
+            
+            .hero-cta { 
+                flex-direction: row; 
+                justify-content: center; 
+            }
+            
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr); /* Changed to 2 for a 2x2 layout */
+            }
+            
+            #about-content {
+                display: flex;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+
+            .bio-text {
+                padding: 0;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .avatar-container {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .project-grid {
+                grid-template-columns: repeat(4, 1fr); /* On very large screens, show all 4 in a row */
+            }
+        }
+
+        /*
+        7. Gallery Modal
+        ========================================
+        */
+        #gallery-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1010;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #gallery-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            background-color: var(--color-surface);
+            z-index: 1011;
+            border-radius: 0.75rem;
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 30px rgba(56, 163, 165, 0.6);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        body.gallery-open #gallery-modal-overlay,
+        body.gallery-open #gallery-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #gallery-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        #gallery-content {
+            padding: 2rem;
+            overflow-y: auto;
+            height: 100%;
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        #gallery-content img {
+            width: 100%;
+            border-radius: 0.5rem;
+            border: 1px solid var(--color-link);
+        }
+
+        /*
+        7.1 About Modal (for projects)
+        ========================================
+        */
+        #about-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1010;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #about-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 700px;
+            height: 70vh;
+            text-align: center;
+            background-color: var(--color-surface);
+            z-index: 1011;
+            border-radius: 0.75rem;
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 30px rgba(56, 163, 165, 0.6);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 2rem;
+        }
+
+        body.about-modal-open #about-modal-overlay,
+        body.about-modal-open #about-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #about-modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; background: none; border: none; color: var(--color-text); cursor: pointer; z-index: 10; }
+        #about-modal-title { font-family: 'Share Tech Mono', monospace; color: var(--color-accent); margin-bottom: 1rem; }
+        #about-modal-content { overflow-y: auto; font-family: 'Inter', sans-serif; line-height: 1.7; }
+        #about-modal-content p { margin-bottom: 1rem; }
+    
+
+        /*
+        7.2 Email Modal (for contact form)
+        ========================================
+        */
+        #email-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); z-index: 1010;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #email-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%; max-width: 600px;
+            background-color: var(--color-surface); z-index: 1011;
+            border-radius: 0.75rem; border: 2px solid var(--color-accent);
+            box-shadow: 0 0 30px rgba(56, 163, 165, 0.6);
+            display: flex; flex-direction: column;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 2rem;
+        }
+
+        body.email-modal-open #email-modal-overlay,
+        body.email-modal-open #email-modal {
+            opacity: 1; visibility: visible;
+        }
+
+        #email-modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; background: none; border: none; color: var(--color-text); cursor: pointer; z-index: 10; }
+        
+        .contact-links-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem; max-width: 800px; margin: 0 auto;
+        }
+
+        /* Override for the form when it's inside the modal */
+        #email-modal .contact-form {
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
+            width: 100%; /* Ensure it fills the modal width */
+        }
+    
+
+        /*
+        8. Custom Scrollbar
+        ========================================
+        */
+        /* For Webkit browsers (Chrome, Safari, Edge) */
+        ::-webkit-scrollbar {
+            width: 8px; /* Makes scrollbar smaller */
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-surface); /* Color of the scrolling track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--color-accent); /* Color of the scroll thumb */
+            border-radius: 10px; /* Roundness of the scroll thumb */
+            border: 2px solid var(--color-surface); /* Creates padding around the thumb */
+        }
+
+        /* For Firefox */
+        html { scrollbar-width: thin; scrollbar-color: var(--color-accent) var(--color-surface); }
+    
+         
+        main { flex-grow: 1; }
+    
+  
+    
