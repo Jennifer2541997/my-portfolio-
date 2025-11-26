@@ -896,6 +896,53 @@
     
 
         /*
+        7.1.5 PDF Modal (for projects)
+        ========================================
+        */
+        #pdf-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1010;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #pdf-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 900px; /* Wider for PDFs */
+            height: 90vh; /* Taller for PDFs */
+            background-color: var(--color-surface);
+            z-index: 1011;
+            border-radius: 0.75rem;
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 0 30px rgba(56, 163, 165, 0.6);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 2rem;
+        }
+
+        body.pdf-modal-open #pdf-modal-overlay,
+        body.pdf-modal-open #pdf-modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #pdf-modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; background: none; border: none; color: var(--color-text); cursor: pointer; z-index: 10; }
+        #pdf-iframe { flex-grow: 1; border: none; }
+
+        /*
         7.2 Email Modal (for contact form)
         ========================================
         */
